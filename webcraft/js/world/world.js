@@ -371,8 +371,8 @@
       index: idxs.length < 65536 ? new Uint16Array(idxs) : new Uint32Array(idxs),
       count: idxs.length,
       has32: idxs.length >= 65536,
-      ao: new Float32Array(aoArr),
-      liquid: new Uint8Array(liqArr),
     };
   };
+
+  WC.DimWorld = DimWorld;
 })();
