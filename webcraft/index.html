@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>WebCraft — Minecraft-like Game</title>
+<style>
+  html, body { margin:0; padding:0; width:100%; height:100%; overflow:hidden; background:#000; font-family:'Segoe UI',Arial,sans-serif; }
+  #game { position:fixed; inset:0; width:100%; height:100%; display:block; image-rendering:pixelated; cursor:crosshair; }
+  #menu { position:fixed; inset:0; z-index:50; display:flex; align-items:center; justify-content:center;
+          background:linear-gradient(rgba(0,0,0,.35),rgba(0,0,0,.55)), url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="64" height="64"><rect width="64" height="64" fill="%23779b5e"/><rect x="0" y="0" width="32" height="32" fill="%236f9356"/><rect x="32" y="32" width="32" height="32" fill="%237fa463"/></svg>');
+          background-size:auto, 128px 128px; }
+  #menu .panel { text-align:center; }
+  #menu h1 { color:#fff; font-size:64px; letter-spacing:4px; margin:0 0 4px;
+             text-shadow:3px 3px 0 #3a3a3a, -1px -1px 0 #000; font-weight:900; }
+  #menu .sub { color:#dfd; margin-bottom:34px; text-shadow:1px 1px 0 #000; font-size:14px; }
+  #menu button { display:block; width:320px; margin:8px auto; padding:12px; font-size:17px; }
+  #menu input, #menu select { padding:8px; font-size:14px; border:2px solid #2a2a2a; background:#c6c6c6; width:150px; }
+  #menu .row { margin:10px auto; color:#fff; text-shadow:1px 1px 0 #000; font-size:14px; }
+  #nogl { display:none; position:fixed; inset:0; z-index:99; background:#222; color:#fff; align-items:center; justify-content:center; flex-direction:column; text-align:center; padding:20px; }
+  #credits { position:absolute; bottom:6px; left:8px; color:#ffc; font-size:12px; text-shadow:1px 1px 0 #000; transform:rotate(-8deg); }
+  #splash { position:absolute; top:96px; right:24px; color:#ff0; font-size:15px; text-shadow:2px 2px 0 #3a3a3a; transform:rotate(-14deg); animation:pulse 1.2s infinite alternate; }
+  @keyframes pulse { from { transform:rotate(-14deg) scale(1); } to { transform:rotate(-14deg) scale(1.12); } }
+</style>
+</head>
+<body>
+<canvas id="game"></canvas>
+
+<div id="menu">
+  <div class="panel">
+    <h1>WEBCRAFT</h1>
+    <div class="sub">A browser Minecraft-like · Survival · Nether · The End · Ender Dragon</div>
+    <button id="playBtn" class="mc-btn">▶ Create New World</button>
+    <button id="continueBtn" class="mc-btn">↺ Load Last Save</button>
+    <div class="row">Seed: <input id="seedInput" placeholder="(random)"/></div>
+    <div class="row">Mode:
+      <select id="modeSel">
+        <option value="survival">Survival</option>
+        <option value="creative">Creative</option>
+        <option value="hardcore">Hardcore</option>
+      </select>
+      Difficulty:
+      <select id="diffSel">
+        <option value="peaceful">Peaceful</option>
+        <option value="easy">Easy</option>
+        <option value="normal" selected>Normal</option>
+        <option value="hard">Hard</option>
+      </select>
+    </div>
+  </div>
+  <div id="splash">Also try real Minecraft!</div>
+  <div id="credits">Made with WebGL2 · 100% procedural</div>
+</div>
+
+<div id="nogl">
+  <h2>⚠ Cannot start the game</h2>
+  <p id="noglmsg"></p>
+  <p>WebCraft requires a browser with <b>WebGL2</b> support (Chrome, Edge, Firefox, Safari 15+).<br/>
+     Open <code>run_game.bat</code> and use the local address it prints.</p>
+</div>
+
+<!-- Core first -->
+<script src="js/core.js"></script>
+<!-- Data registries -->
+<script src="js/world/blocks.js"></script>
+<script src="js/world/items.js"></script>
+<script src="js/world/recipes.js"></script>
+<script src="js/world/mobs.js"></script>
+<!-- World -->
+<script src="js/world/gen.js"></script>
+<script src="js/world/world.js"></script>
+<script src="js/world/state.js"></script>
+<!-- Textures & audio -->
+<script src="js/world/textures.js"></script>
+<script src="js/render/textures.js"></script>
+<script src="js/audio/sound.js"></script>
+<!-- Render -->
+<script src="js/render/renderer.js"></script>
+<!-- Gameplay -->
+<script src="js/game/player.js"></script>
+<script src="js/ui/ui.js"></script>
+<script src="js/game/main.js"></script>
+</body>
+</html>
